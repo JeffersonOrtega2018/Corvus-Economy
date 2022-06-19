@@ -1,17 +1,10 @@
 package com.finanzas;
 
-import java.util.ArrayList;
-
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.finanzas.Service.UserService;
-import com.finanzas.entities.Role;
-import com.finanzas.entities.User;
 
 @SpringBootApplication
 public class TfApiApplication {
@@ -20,7 +13,7 @@ public class TfApiApplication {
 		SpringApplication.run(TfApiApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	PasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
@@ -44,5 +37,5 @@ public class TfApiApplication {
 			userService.addRolToUser("rodrigo2@gmail.com", "ROLE_MANAGER");
 			userService.addRolToUser("rodrigo3@gmail.com", "ROLE_USER");
 		};
-	}
+	}*/
 }

@@ -1,71 +1,122 @@
-package com.finanzas.Service;
+package com.finanzas.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.finanzas.Repositories.RolRepository;
-import com.finanzas.Repositories.UserRepository;
+import com.finanzas.dto.LoginRequestDto;
+import com.finanzas.dto.LoginResponseDto;
+import com.finanzas.dto.SignupRequestDto;
+import com.finanzas.exception.IncorrectRequestException;
+import com.finanzas.entities.ERole;
 import com.finanzas.entities.Role;
 import com.finanzas.entities.User;
+import com.finanzas.repository.RoleRepository;
+import com.finanzas.repository.UserRepository;
+import com.finanzas.security.jwt.JwtUtils;
+import com.finanzas.security.services.UserPrincipal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
-@Transactional
-@Slf4j
-public class UserService implements UserDetailsService{
-    private final UserRepository userRepository;
-    private final RolRepository rolRepository;
-    private final PasswordEncoder passwordEncoder;
+public class UserService {
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        if(user == null){
-            log.error("User not found in the database");
-        }else{
-            log.info("User  found in the database: {}",email);
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    JwtUtils jwtUtils;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+
+    @Transactional
+    public User registerUser(SignupRequestDto signupRequestDto) {
+        if (userRepository.existsByUsername(signupRequestDto.getUsername())) {
+            throw new IncorrectRequestException("El nombre usuario ya existe");
         }
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        user.getRols().forEach(rol -> {
-            authorities.add(new SimpleGrantedAuthority(rol.getName()));
-        });
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),authorities);
-    }
 
-    public User saveUser(User user){
-        log.info("Saving new user to the database", user.getEmail());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (userRepository.existsByEmail(signupRequestDto.getEmail())) {
+            throw new IncorrectRequestException("El email del usuario ya existe");
+        }
+
+        // Create new user's account
+        User user = new User(signupRequestDto.getUsername(),
+                signupRequestDto.getEmail(),
+                encoder.encode(signupRequestDto.getPassword()));
+
+        Set<String> strRoles = signupRequestDto.getRole();
+        Set<Role> roles = new HashSet<>();
+
+
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: No se encuentra el rol."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin":
+                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: No se encuentra el rol."));
+                        roles.add(adminRole);
+
+                        break;
+                    case "mod":
+                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                                .orElseThrow(() -> new RuntimeException("Error: No se encuentra el rol"));
+
+                        break;
+                    default:
+                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                                .orElseThrow(() -> new RuntimeException("Error: No se encuentra el rol."));
+                        roles.add(userRole);
+                }
+            });
+        }
+
+        user.setRoles(roles);
         return userRepository.save(user);
     }
-    public Role saveRol(Role rol){
-        log.info("Saving new rol to the database", rol.getName());
-        return rolRepository.save(rol);
+
+
+    public LoginResponseDto authenticateUser(LoginRequestDto request){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserPrincipal userDetails = (UserPrincipal) authentication.getPrincipal();
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(item -> item.getAuthority())
+                .collect(Collectors.toList());
+
+        return new LoginResponseDto(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles);
     }
-    public void addRolToUser(String email, String rolName){
-        log.info("Adding role {} to user {}", rolName, email);
-        User user = userRepository.findByEmail(email);
-        Role rol = rolRepository.findByName(rolName);
-        user.getRols().add(rol);
-    }
-    public User getUser(String email){
-        log.info("Fetching user {}", email);
-        return userRepository.findByEmail(email);
-    }
-    public List<User>getUsers(){
-        log.info("Fetching all users");
-        return userRepository.findAll();
-    }
-   
+
+
+
+
+
 }
