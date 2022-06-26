@@ -2,7 +2,7 @@
   <div class="margin-b20 margin-t10">
     <img src="/assets/Logo_Transparente.jpg" alt="logo" class="logoform">
   </div>
-  <mat-card class="card center-h center-v" [formGroup]="signInForm" >
+  <form class="card center-h center-v" (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
     <div class="margin-b20">
       <mat-card-title class="margin-t10">Inicio de sesión</mat-card-title>
@@ -10,17 +10,12 @@
     <mat-form-field class="example-full-width label rosado margin-b20" appearance="fill">
 
       <input matInput
-             placeholder="user@gmail.com"
-             formControlName="email"
-             required/>
-
-      <div *ngIf="email.invalid && (email.dirty|| email!.touched)">
-        <!--              si el email es invalido-->
-        <mat-error *ngIf="email.errors?.['email']">You must enter a valid email address</mat-error>
+             placeholder="username"
+             type="text" id="username" name="username" required
+             [(ngModel)]="model.username"/>
         <!--              si el input está vacio, osea no colocó el email-->
-        <mat-error *ngIf="email.errors?.['required']">Email is required</mat-error>
+        <mat-error *ngIf="model.username ==''">username is required</mat-error>
 
-      </div>
     </mat-form-field>
 
     <mat-form-field class="example-full-width label rosado margin-b20" appearance="fill">
@@ -29,17 +24,16 @@
         type="password"
         matInput
         placeholder="write your password :3"
-        formControlName="password"
+        id="password" name="password" 
+        [(ngModel)]="model.password"
         required/>
-      <div *ngIf="password.invalid && (password.dirty|| password!.touched)">
-        <mat-error *ngIf="password.errors?.['minLength']"> Password must be at least 6 characters length</mat-error>
-        <mat-error *ngIf="password.errors?.['required']">Password is required</mat-error>
+        <mat-error *ngIf="model.password ==''">password is required</mat-error>
 
-      </div>
+      
     </mat-form-field>
 
     <div>
-      <button mat-raised-button class="b-color material-button" (click)="signIn()"><span>Iniciar Sesión</span></button>
+      <button mat-raised-button class="b-color material-button" type="submit"><span>Iniciar Sesión</span></button>
     </div>
 
     <p class="margin-t20">
@@ -57,69 +51,6 @@
                 </strong>
           </span>
     </p>
-  </mat-card>
+  </form>
 </div>
 
-<style>
-  .example-card {
-    max-width: 400px;
-  }
-
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-
-  .font{
-
-    font-family: "Roboto";
-  }
-
-  .b-color{
-    background-color: #6DB0E8;
-    color:white;
-    /*font-style: "Roboto";*/
-  }
-
-  .card{
-    background-color: #bfedef;
-    border: white 25px solid;
-    display: grid;
-    justify-items: center;
-    width: 550px;
-
-  }
-
-  .margin-t20{
-    margin-top: 20px;
-  }
-
-  .margin-t10{
-    margin-top: 10px;
-  }
-
-  .margin-b20{
-    margin-bottom: 20px;
-  }
-
-  .container{
-    display: grid;
-    align-items: center;
-    justify-items: center;
-
-  }
-
-  .label{
-    width: 500px;
-  }
-
-  .logoform{
-    height: 100px;
-    width: 250px;
-  }
-  .rosado{
-    background-color:white;
-    height: 52px;
-    width: 500px;
-  }
-</style>

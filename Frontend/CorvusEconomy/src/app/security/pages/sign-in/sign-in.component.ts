@@ -1,7 +1,8 @@
 import { Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SignInService} from "../../service/sign-in.service";
 import {Router} from "@angular/router";
+import { Login } from '../../model/login-user.model';
+import { IdentityService } from '../../service/identity.service';
+import { UserStorageService } from '../../service/user-storage.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,36 +10,32 @@ import {Router} from "@angular/router";
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent {
-  signInForm: FormGroup;
+  public model: Login = new Login();
+  public invalid?: boolean;
 
-  constructor(public builder: FormBuilder,
-              public authService: SignInService,
-              public router: Router) {
-    this.signInForm = this.builder.group({
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+  constructor(
+    private identityService: IdentityService,
+    private userStorageService: UserStorageService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    let self = this;
+
+    self.router.navigate(['/']);
+
+    this.identityService.login(this.model).subscribe({
+      next(data) {
+        //console.log(data);
+        self.userStorageService.set(data);
+        self.router.navigate(['/input']);
+      },
+      error() {
+        self.invalid = true;
+      },
     });
   }
-  get email(){return this.signInForm.controls['email'];}
-  get password(){return this.signInForm.controls['password'];}
-
-  signIn(){
-   // console.log(this.signInForm.value);
-    this.authService.signIn(this.signInForm.value).subscribe((response: any)=>{
-      localStorage.setItem('accessToken',JSON.stringify(response.accessToken));
-      localStorage.setItem('currentUser',JSON.stringify(response.user));
-      this.signInForm.reset();
-      console.log(`accessToken: ${localStorage.getItem('accessToken')}` );
-      this.router.navigate(['input']).then();
-    });
-
-  }
-  cancelSignIn(){
-    console.log('Cancelled');
-
-  }
-
-  // ngOnInit(): void {
-  // }
 
 }

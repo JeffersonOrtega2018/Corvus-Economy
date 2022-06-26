@@ -59,7 +59,8 @@ public class UserService {
         // Create new user's account
         User user = new User(signupRequestDto.getUsername(),
                 signupRequestDto.getEmail(),
-                encoder.encode(signupRequestDto.getPassword()));
+                encoder.encode(signupRequestDto.getPassword()),
+                signupRequestDto.getPhone());
 
         Set<String> strRoles = signupRequestDto.getRole();
         Set<Role> roles = new HashSet<>();
