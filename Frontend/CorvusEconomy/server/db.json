@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "lean@gmail.com",
+      "password": "$2a$10$fir6.OWG.pOsnpuuPduRpOakzjmIlcP11HPav8wSCKaahRTZMb1qS",
+      "id": 5
+    },
+    {
+      "email": "lea@gmail.com",
+      "password": "$2a$10$diVA6LUycLozWr/UwaPQA.acZbB1l0iPnJA46LyjTpJdLNv2yAMjy",
+      "id": 6
+    },
+    {
+      "email": "britney12@gmail.com",
+      "password": "$2a$10$fmvY5W3c7ybmCEYMsh6dt.jEP5RNlJK2I1QaESITH4VfeqGyej60a",
+      "id": 7
+    }
+  ]
+}

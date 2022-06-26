@@ -1,38 +1,12 @@
-<p>
-  <mat-toolbar class="toolbar1">
-  <div class="logo">
-    <img src="assets\Logo_Transparente.jpg" alt="CorvusEconomy" width="200">
+<mat-toolbar color="primary">
+  <mat-divider [vertical]="true" [inset]="true"></mat-divider>
+  <a *ngIf="getCurrentUserEmail() === null" mat-button [routerLink]="'./sign-in'">Sign-In</a>
+
+  <div *ngIf="getCurrentUserEmail()">
+
+    <a mat-button>{{ getCurrentUserEmail() }}</a>
+    <!--al llamar a una funcion se usa (click)-->
+    <button mat-raised-button class="b-color material-button" (click)="signOut()"><span>Sign Out</span></button>
   </div>
-  <span class="example-spacer"></span>
-  
-  <button mat-raised-button>Desconectarse</button>
-
 </mat-toolbar>
-</p>
-<app-login></app-login>
-<app-register></app-register>
-<app-forgotpassword></app-forgotpassword>
-<app-inputs></app-inputs>
-
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  .toolbar1{
-    background-color: #48B9BD;
-    height: 100px;
-  }
-
-  .example-spacer {
-  flex: 1 1 auto;
-  }
-
-
-</style>
-
+<router-outlet></router-outlet>
