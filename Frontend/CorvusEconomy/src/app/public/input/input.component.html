@@ -1,0 +1,352 @@
+<div class="container verde">
+  <mat-card class="card">
+    <div class="margin-b20">
+      <mat-card-title class="margin-t10">Método de amortización constante</mat-card-title>
+    </div>
+    <div class="label2">
+      <span class="azul">Tipo de moneda</span>
+      <span class="example-spacer"></span>
+
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Seleccione un tipo de moneda"
+               formControlName="email"
+               required/>
+        <mat-select>
+          <mat-option value="11">Soles</mat-option>
+          <mat-option value="12">Dolares</mat-option>
+          <mat-option value="13">Yenes</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="label2 margin-b20 margin-t20">
+      <span class="azul">Valor Nominal</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese una cantidad"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Valor Comercial</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese una cantidad"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Número de Años</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese una cantidad de años"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Frecuencia del cupón</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Seleccione una frecuencia"
+               required/>
+        <mat-select>
+          <mat-option value="21">Mensual</mat-option>
+          <mat-option value="22">Bimestral</mat-option>
+          <mat-option value="23">Trimestral</mat-option>
+          <mat-option value="24">Cuatrimestral</mat-option>
+          <mat-option value="25">Semestral</mat-option>
+          <mat-option value="26">Anual</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Número de días por año</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Seleccione número de dias"
+               required/>
+        <mat-select>
+          <mat-option value="31">360</mat-option>
+          <mat-option value="32">365</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tipo de tasa de interés</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Seleccione tipo de tasas"
+               required/>
+        <mat-select>
+          <mat-option value="41">Nominal</mat-option>
+          <mat-option value="42">Efectiva</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Capitalización</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <mat-label>Seleccione tipo de capitalización</mat-label>
+        <mat-select>
+          <mat-option value="51">Diaria</mat-option>
+          <mat-option value="52">Quincenal</mat-option>
+          <mat-option value="53">Mensual</mat-option>
+          <mat-option value="54">Bimestral</mat-option>
+          <mat-option value="55">Trimestral</mat-option>
+          <mat-option value="56">Cuatrimestral</mat-option>
+          <mat-option value="57">Semestral</mat-option>
+          <mat-option value="58">Anual</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tasa de interés</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tasa anual de descuento</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Impuesto a la Renta</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Fecha de Emisión</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="DD/MM/YYYY (separar dígitos con '/')"
+               required/>
+      </mat-form-field>
+
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Porcentaje de Prima</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Porcentaje de Estructuración</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tipo de persona (Estructuración)</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <mat-label>Seleccione tipo de persona</mat-label>
+        <mat-select>
+          <mat-option value="61">Bonista</mat-option>
+          <mat-option value="62">Emisor</mat-option>
+          <mat-option value="63">Ambos</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tasa de Colocación</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tipo de persona (Colocación)</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <mat-label>Seleccione tipo de persona</mat-label>
+        <mat-select>
+          <mat-option value="71">Bonista</mat-option>
+          <mat-option value="72">Emisor</mat-option>
+          <mat-option value="73">Ambos</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Porcentaje de Flotación</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tipo de persona (Flotación)</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <mat-label>Seleccione tipo de persona</mat-label>
+        <mat-select>
+          <mat-option value="81">Bonista</mat-option>
+          <mat-option value="82">Emisor</mat-option>
+          <mat-option value="83">Ambos</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Porcentaje de CAVALI</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <input matInput
+               placeholder="Ingrese un porcentaje sin signo %"
+               required/>
+      </mat-form-field>
+    </div>
+
+    <div class="label2 margin-b20">
+      <span class="azul">Tipo de persona (CAVALI)</span>
+      <span class="example-spacer"></span>
+      <mat-form-field class="example-full-width label rosado" appearance="fill">
+        <mat-label>Seleccione tipo de persona</mat-label>
+        <mat-select>
+          <mat-option value="91">Bonista</mat-option>
+          <mat-option value="92">Emisor</mat-option>
+          <mat-option value="93">Ambos</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <button mat-raised-button class="b-color" routerLink="/output"><span>Calcular</span></button>
+    </div>
+  </mat-card>
+</div>
+
+<style>
+  .example-card {
+    max-width: 400px;
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .font {
+
+    font-family: "Roboto";
+  }
+
+  .b-color {
+    background-color: #6DB0E8;
+    color: white;
+    /*//font-style: Roboto;*/
+  }
+
+  .card {
+    background-color: #bfedef;
+    border: white 25px solid;
+    display: grid;
+    justify-items: center;
+    width: 700px;
+
+  }
+
+  .margin-t20 {
+    margin-top: 20px;
+  }
+
+  .margin-t10 {
+    margin-top: 10px;
+  }
+
+  .margin-b20 {
+    margin-bottom: 20px;
+  }
+
+  .container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .label {
+    width: 250px;
+  }
+
+  .logoform {
+    height: 100px;
+    width: 250px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .label2 {
+    background-color: #a2d7ed;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    width: 600px;
+  }
+
+  .azul {
+    margin-left: 20px;
+  }
+
+  .rosado {
+    background-color: white;
+    height: 52px;
+    width: 300px;
+  }
+
+  .verde {
+    padding-bottom: 30px;
+    padding-top: 20px;
+  }
+
+
+</style>
