@@ -1,269 +1,233 @@
 <div class="container verde">
-  <mat-card class="card">
+  <form class="card" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate >
     <div class="margin-b20">
       <mat-card-title class="margin-t10">Método de amortización constante</mat-card-title>
     </div>
+
     <div class="label2">
+      <span class="azul">Nombre del Bono</span>
+      <span class="example-spacer"></span>
+      <div class="example-full-width label rosado" appearance="fill">
+        <input matInput 
+        id="name" formControlName="name"
+        placeholder="Ingrese el nombre del Bono"
+        required/>
+    </div>
+    </div>
+
+    
+    <div class="label2 margin-b20 margin-t20">
       <span class="azul">Tipo de moneda</span>
       <span class="example-spacer"></span>
 
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <input matInput
-               placeholder="Seleccione un tipo de moneda"
-               formControlName="email"
-               required/>
-        <mat-select>
-          <mat-option value="11">Soles</mat-option>
-          <mat-option value="12">Dolares</mat-option>
-          <mat-option value="13">Yenes</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="example-full-width label rosado" formControlName="moneda_id" appearance="fill" >
+        <select id="moneda_id" formGroupName="id" #moneda required (click)="onSelected(moneda.value)">
+          <option value="1">Soles</option>
+          <option value="2">Dolares</option>
+          <option value="3">Yenes</option>
+        </select>
+      </div>
 
     </div>
 
     <div class="label2 margin-b20 margin-t20">
       <span class="azul">Valor Nominal</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+               id="v_nominal" formControlName="v_nominal"
                placeholder="Ingrese una cantidad"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Valor Comercial</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="v_comercial" formControlName="v_comercial"
                placeholder="Ingrese una cantidad"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Número de Años</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="n_años" formControlName="n_años"
                placeholder="Ingrese una cantidad de años"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Frecuencia del cupón</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <input matInput
-               placeholder="Seleccione una frecuencia"
-               required/>
-        <mat-select>
-          <mat-option value="21">Mensual</mat-option>
-          <mat-option value="22">Bimestral</mat-option>
-          <mat-option value="23">Trimestral</mat-option>
-          <mat-option value="24">Cuatrimestral</mat-option>
-          <mat-option value="25">Semestral</mat-option>
-          <mat-option value="26">Anual</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="example-full-width label rosado" appearance="fill" formControlName="frecuencia_id">
+        <select id="frecuencia_id" formGroupName="id" required>
+          <option value="1">Mensual</option>
+          <option value="2">Bimestral</option>
+          <option value="3">Trimestral</option>
+          <option value="4">Cuatrimestral</option>
+          <option value="5">Semestral</option>
+          <option value="6">Anual</option>
+        </select>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Número de días por año</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <input matInput
-               placeholder="Seleccione número de dias"
-               required/>
-        <mat-select>
-          <mat-option value="31">360</mat-option>
-          <mat-option value="32">365</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="example-full-width label rosado" appearance="fill" formControlName="tipoanho_id">
+        <select id="tipoanho_id" formGroupName="id" required>
+          <option value="1">360</option>
+          <option value="2">365</option>
+        </select>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Tipo de tasa de interés</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <input matInput
-               placeholder="Seleccione tipo de tasas"
-               required/>
-        <mat-select>
-          <mat-option value="41">Nominal</mat-option>
-          <mat-option value="42">Efectiva</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="example-full-width label rosado" appearance="fill" formControlName="tipointeres_id">
+                <select id="tipointeres_id" formGroupName="id" required>
+                <option value="1">NOMINAL</option>
+                <option value="2">EFECTIVA</option>
+              </select>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Capitalización</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <mat-label>Seleccione tipo de capitalización</mat-label>
-        <mat-select>
-          <mat-option value="51">Diaria</mat-option>
-          <mat-option value="52">Quincenal</mat-option>
-          <mat-option value="53">Mensual</mat-option>
-          <mat-option value="54">Bimestral</mat-option>
-          <mat-option value="55">Trimestral</mat-option>
-          <mat-option value="56">Cuatrimestral</mat-option>
-          <mat-option value="57">Semestral</mat-option>
-          <mat-option value="58">Anual</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="example-full-width label rosado"  appearance="fill" formControlName="capitalizacion_id">
+        <select id="capitalizacion_id" formGroupName="id" required>
+          <option value="1">Diaria</option>
+          <option value="2">Quincenal</option>
+          <option value="3">Mensual</option>
+          <option value="4">Bimestral</option>
+          <option value="5">Trimestral</option>
+          <option value="6">Cuatrimestral</option>
+          <option value="7">Semestral</option>
+          <option value="8">Anual</option>
+        </select>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Tasa de interés</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="tasa_interes" formControlName="tasa_interes"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Tasa anual de descuento</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+                id="ta_anual_desc" formControlName="ta_anual_desc"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Impuesto a la Renta</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="impuestor" formControlName="impuestor"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Fecha de Emisión</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <input matInput
-               placeholder="DD/MM/YYYY (separar dígitos con '/')"
+      <div  class="example-full-width label rosado" appearance="fill">
+        <input matInput type="date"
+              id="fch_emision" formControlName="fch_emision"
+              impuestor
                required/>
-      </mat-form-field>
+      </div>
 
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Porcentaje de Prima</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="prima" formControlName="prima"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Porcentaje de Estructuración</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="estructuracion" formControlName="estructuracion"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Tipo de persona (Estructuración)</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <mat-label>Seleccione tipo de persona</mat-label>
-        <mat-select>
-          <mat-option value="61">Bonista</mat-option>
-          <mat-option value="62">Emisor</mat-option>
-          <mat-option value="63">Ambos</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="example-full-width label rosado" appearance="fill">
+          <mat-option value="Bonista">Bonista</mat-option>
+      </div>
     </div>
 
     <div class="label2 margin-b20">
       <span class="azul">Tasa de Colocación</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="colocacion" formControlName="colocacion"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
+      </div>
     </div>
-
-    <div class="label2 margin-b20">
-      <span class="azul">Tipo de persona (Colocación)</span>
-      <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <mat-label>Seleccione tipo de persona</mat-label>
-        <mat-select>
-          <mat-option value="71">Bonista</mat-option>
-          <mat-option value="72">Emisor</mat-option>
-          <mat-option value="73">Ambos</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
     <div class="label2 margin-b20">
       <span class="azul">Porcentaje de Flotación</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="flotacion" formControlName="flotacion"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
+      </div>
     </div>
-
-    <div class="label2 margin-b20">
-      <span class="azul">Tipo de persona (Flotación)</span>
-      <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <mat-label>Seleccione tipo de persona</mat-label>
-        <mat-select>
-          <mat-option value="81">Bonista</mat-option>
-          <mat-option value="82">Emisor</mat-option>
-          <mat-option value="83">Ambos</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
     <div class="label2 margin-b20">
       <span class="azul">Porcentaje de CAVALI</span>
       <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
+      <div class="example-full-width label rosado" appearance="fill">
         <input matInput
+              id="cavali" formControlName="cavali"
                placeholder="Ingrese un porcentaje sin signo %"
                required/>
-      </mat-form-field>
-    </div>
-
-    <div class="label2 margin-b20">
-      <span class="azul">Tipo de persona (CAVALI)</span>
-      <span class="example-spacer"></span>
-      <mat-form-field class="example-full-width label rosado" appearance="fill">
-        <mat-label>Seleccione tipo de persona</mat-label>
-        <mat-select>
-          <mat-option value="91">Bonista</mat-option>
-          <mat-option value="92">Emisor</mat-option>
-          <mat-option value="93">Ambos</mat-option>
-        </mat-select>
-      </mat-form-field>
+      </div>
     </div>
 
     <div>
-      <button mat-raised-button class="b-color" routerLink="/output"><span>Calcular</span></button>
+      <button mat-raised-button class="b-color" type="submit"><span>Calcular</span></button>
     </div>
-  </mat-card>
+  </form>
 </div>
-
 <style>
   .example-card {
     max-width: 400px;

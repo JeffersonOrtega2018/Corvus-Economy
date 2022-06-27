@@ -23,7 +23,9 @@ public class SignupRequestDto {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
-
+    @NotBlank
+    @Size(min = 9, max = 9)
+    private String phone;
     public String getUsername() {
         return username;
     }
@@ -68,5 +70,13 @@ public class SignupRequestDto {
 
     public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -2,21 +2,23 @@
   <div class="margin-b20 margin-t10">
     <img src="/assets/Logo_Transparente.jpg" alt="logo" class="logoform">
   </div>
-  <mat-card class="card center-h center-v">
+  <form class="card center-h center-v" [formGroup]="registroForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="margin-b20">
       <mat-card-title class="margin-t10">Crea tu cuenta</mat-card-title>
     </div>
 
     <mat-form-field class="example-full-width label rosado margin-b20" appearance="fill">
       <input matInput
-             placeholder="Escriba su nombre :)"
-             formControlName="name"
-             required/>
+             placeholder="Escriba su username :)"
+             formControlName="username"
+             id = "username"
+             required/> 
     </mat-form-field>
 
     <mat-form-field class="example-full-width label rosado margin-b20 " appearance="fill">
       <input matInput
              placeholder="user@gmail.com"
+             id = "email"
              formControlName="email"
              required/>
       <!--      <mat-label>Correo electronico</mat-label>-->
@@ -26,18 +28,22 @@
       <input matInput
              placeholder="ingrese un numero de telefono"
              formControlName="phone"
+             id = "phone"
              required/>
     </mat-form-field>
 
     <mat-form-field class="example-full-width label rosado margin-b20" appearance="fill">
       <input matInput
+        type="password"
         placeholder="write your password :3"
         formControlName="password"
+        id = "password"
         required/>
     </mat-form-field>
 
     <mat-form-field class="example-full-width label rosado margin-b20" appearance="fill">
       <input matInput
+            type="password"
              placeholder="repeat your password :3"
              formControlName="password"
              required/>
@@ -53,7 +59,7 @@
     </p>
 
     <div>
-      <button mat-raised-button class="b-color"><span routerLink="/sign-in">Registrame</span></button>
+      <button mat-raised-button class="b-color" type="submit">Registrame</button>
     </div>
 
     <p class="margin-t20">
@@ -65,76 +71,5 @@
           </span>
     </p>
 
-  </mat-card>
+  </form>
 </div>
-
-<style>
-  .example-card {
-    max-width: 400px;
-  }
-
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-
-  .font {
-
-    font-family: "Roboto";
-  }
-
-  .b-color {
-    background-color: #6DB0E8;
-    color: white;
-    /*font-style: "Roboto";*/
-  }
-
-  .card {
-    background-color: #bfedef;
-    border: white 25px solid;
-    display: grid;
-    justify-items: center;
-    width: 550px;
-
-  }
-
-  .margin-t20 {
-    margin-top: 20px;
-  }
-
-  .margin-t10 {
-    margin-top: 10px;
-  }
-
-  .margin-b20 {
-    margin-bottom: 20px;
-  }
-
-  .container {
-    display: grid;
-    align-items: center;
-    justify-items: center;
-
-  }
-
-  .label {
-    width: 500px;
-  }
-
-  .logoform {
-    height: 100px;
-    width: 250px;
-  }
-
-  .rosado {
-    background-color: white;
-    height: 52px;
-    width: 500px;
-  }
-
-  .input {
-    display: grid;
-    align-items: center;
-    justify-items: center;
-  }
-</style>

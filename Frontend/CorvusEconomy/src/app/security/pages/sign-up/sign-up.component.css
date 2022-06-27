@@ -1,0 +1,68 @@
+.example-card {
+    max-width: 400px;
+  }
+
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .font {
+
+    font-family: "Roboto";
+  }
+
+  .b-color {
+    background-color: #6DB0E8;
+    color: white;
+    /*font-style: "Roboto";*/
+  }
+
+  .card {
+    background-color: #bfedef;
+    border: white 25px solid;
+    display: grid;
+    justify-items: center;
+    width: 550px;
+
+  }
+
+  .margin-t20 {
+    margin-top: 20px;
+  }
+
+  .margin-t10 {
+    margin-top: 10px;
+  }
+
+  .margin-b20 {
+    margin-bottom: 20px;
+  }
+
+  .container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+  }
+
+  .label {
+    width: 500px;
+  }
+
+  .logoform {
+    height: 100px;
+    width: 250px;
+  }
+
+  .rosado {
+    background-color: white;
+    height: 52px;
+    width: 500px;
+  }
+
+  .input {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
