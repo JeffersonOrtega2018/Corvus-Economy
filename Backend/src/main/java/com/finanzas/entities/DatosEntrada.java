@@ -56,6 +56,8 @@ public class DatosEntrada {
   private float flotacion;
   @Column(name = "cavali", nullable = false)
   private float cavali;
+  @Column(name = "tasa_interes", nullable = false)
+  private float tasa_interes;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
@@ -72,4 +74,7 @@ public class DatosEntrada {
   @ManyToOne
   @JoinColumn(name= "capitalizacion_id")
   private Capitalizacion capitalizacion_id;  
+  @ManyToOne
+  @JoinColumn(name= "moneda_id")
+  private Capitalizacion nomeda_id;
 }
